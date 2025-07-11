@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Account - SolarVision</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #e0fff4, #f2f8ff);
+    }
+
+    nav {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 40px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #4f46e5;
+    }
+
+    nav .logo span {
+      color: #6d28d9;
+      margin-left: 5px;
+    }
+
+    nav .links a {
+      margin-left: 26px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    nav .links a.active {
+      background: #7c3aed;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 30px;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      max-width: 400px;
+      width: 100%;
+      margin: 60px auto;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      font-size: 0.95rem;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: #00a97f;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #008c6a;
+    }
+
+    .bottom-text {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: #333;
+      text-align: center;
+    }
+
+    .bottom-text a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .bottom-text a:hover {
+      text-decoration: underline;
+    }
+
+    .flash-message {
+      background-color: #fdecea;
+      color: #b71c1c;
+      border: 1px solid #f5c6cb;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">
+      <img src="https://img.icons8.com/ios-filled/24/sun--v1.png" style="margin-right: 8px;" />
+      Solar<span>Vision</span>
+    </div>
+    <div class="links">
+      <a href="/index">Home</a>
+      <a href="/login" class="active">Login</a>
+    </div>
+  </nav>
+
+ <!-- Form -->
+<div class="form-container">
+  <h2>Create Account</h2>
+  <p>Join our solar monitoring platform</p>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="flash-message">
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form action="/register" method="POST">
+
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" placeholder="Choose a username" required>
+
+    <label for="email">Email Address</label>
+    <input type="email" name="email" id="email" placeholder="Enter your email" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" placeholder="Create a password" required>
+
+    <label for="confirm">Confirm Password</label>
+    <input type="password" name="confirm" id="confirm" placeholder="Confirm your password" required>
+
+    <button type="submit" class="btn">✔️ Create Account</button>
+  </form>
+
+  <div class="bottom-text">
+    Already have an account? <a href="/login">Sign in here</a>
+  </div>
+</div>
+
+</body>
+</html>

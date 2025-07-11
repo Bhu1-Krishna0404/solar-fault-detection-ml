@@ -1,0 +1,9 @@
+Flask
+pip install scikit-learn==0.24.2
+joblib
+numpy
+
+
+
+
+#python==3.8

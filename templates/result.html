@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Result - SolarVision</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f4f6;
+    }
+
+    nav {
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 40px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #4f46e5;
+    }
+
+    nav .logo span {
+      color: #6d28d9;
+      margin-left: 5px;
+    }
+
+    nav .links a {
+      margin-left: 26px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    nav .links a.active {
+      background: #7c3aed;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 30px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 18px;
+      padding: 40px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container h2 {
+      font-size: 28px;
+      color: #4c1d95;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .results-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .result-card {
+      padding: 24px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      transform: perspective(1000px) rotateX(2deg);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .result-card:hover {
+      transform: perspective(1000px) rotateX(0deg) scale(1.02);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .result-card h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+    }
+
+    .green {
+      background-color: #e0f7e9;
+      color: #065f46;
+      border-left: 6px solid #10b981;
+    }
+
+    .red {
+      background-color: #fef2f2;
+      color: #991b1b;
+      border-left: 6px solid #dc2626;
+    }
+
+    .new-prediction-card {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .new-prediction-card a {
+      display: inline-block;
+      background: linear-gradient(to right, #7c3aed, #9333ea);
+      color: white;
+      padding: 14px 30px;
+      border-radius: 40px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .new-prediction-card a:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      .result-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+  <div class="logo">
+    <img src="https://img.icons8.com/ios-filled/24/sun--v1.png" style="margin-right: 8px;" />
+    Solar<span>Vision</span>
+  </div>
+  <div class="links">
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('prediction') }}" class="active">Prediction</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+  </div>
+</nav>
+
+<!-- Result Section -->
+<div class="container">
+  <h2>🔍 Prediction Result</h2>
+
+  <div class="results-grid">
+    {% for key, value in prediction.items() %}
+      <div class="result-card {{ 'red' if value == 'Yes' else 'green' }}">
+        <h3>{{ key }}</h3>
+        <p>{{ "Detected" if value == "Yes" else "Not Detected" }}</p>
+      </div>
+    {% endfor %}
+
+    <div class="new-prediction-card">
+      <a href="{{ url_for('prediction') }}">🔁 New Prediction</a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
