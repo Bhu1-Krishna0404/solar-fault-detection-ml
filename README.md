@@ -74,4 +74,37 @@ Each model was evaluated using:
 
 ---
 
+## ✅ Requirements
+ Python 3.8+
+
+pandas
+
+numpy
+
+scikit-learn
+
+matplotlib
+
+seaborn
+
+tensorflow / keras (for ANN)
+
+## 📌 Future Enhancements
+Add real-time fault detection capability.
+
+Explore transfer learning or domain adaptation to handle data from different PV systems.
+
+Integrate into an IoT monitoring platform.
+
+## 📬 Contact
+If you have any questions or suggestions, feel free to reach out!
+
+
+
+## 📄 License
+This project is licensed under the MIT License.
+
+---
+
+Would you like me to generate a sample `requirements.txt` file or code template for any specific model (e.g., ANN or Random Forest)?
 
